@@ -1,8 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    word-break: break-all;
 }
 
 body {
@@ -16,7 +14,6 @@ body {
 
 header {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -56,7 +53,6 @@ nav ul li a:hover {
 .conteudo {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     flex: 1;
 }
@@ -75,6 +71,7 @@ nav ul li a:hover {
 .artigo {
     background-color: #201d1d;
     border-radius: 10px;
+    margin: 0.5rem;
 }
 
 .artigo h1 {
@@ -130,7 +127,23 @@ footer {
 }
 
 @media (max-width: 768px) {
+    header {
+        display: flex;
+        flex-direction: column;
+    }
     .projetos {
         flex-direction: column;
     }
+
+    * {
+    box-sizing: border-box;
+    word-break: break-all;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+@media (min-width: 1025px) {
+
 }
