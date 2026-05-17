@@ -65,7 +65,6 @@ nav ul li a:hover {
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
-
 }
 
 .artigo {
@@ -131,19 +130,17 @@ footer {
         display: flex;
         flex-direction: column;
     }
+
     .projetos {
         flex-direction: column;
     }
 
     * {
-    box-sizing: border-box;
-    word-break: break-all;
+        box-sizing: border-box;
+        word-break: break-all;
     }
 }
-@media (min-width: 769px) and (max-width: 1024px) {
 
-}
+@media (min-width: 769px) and (max-width: 1024px) {}
 
-@media (min-width: 1025px) {
-
-}
+@media (min-width: 1025px) {}
