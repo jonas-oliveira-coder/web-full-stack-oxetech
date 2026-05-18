@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Tailwind</title>
+</head>
+
+<body >
+
+<main class="flex items-center justify-center min-h-screen bg-gray-100">
+
+    <section class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
+
+        <header class="mb-6 text-center">
+            <h1 class="text-3xl font-bold text-gray-800">
+                Login
+            </h1>
+
+            <p class="text-gray-500 mt-2">
+                Entre com sua conta
+            </p>
+        </header>
+
+        <form action="/login" class="space-y-5">
+
+            <div>
+                <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 mb-2">
+
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="seu-email@exemplo.com"
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+            </div>
+
+            <div>
+                <label
+                    for="senha"
+                    class="block text-sm font-medium text-gray-700 mb-2">
+
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="senha"
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+
+                <p class="text-sm text-gray-500 mt-2">
+                    Sua senha deve ter de 8 a 20 caracteres.
+                </p>
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition duration-300">
+
+                Login
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>
