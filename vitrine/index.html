@@ -10,7 +10,8 @@
     <link rel="icon" href="img/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -21,101 +22,172 @@
 
 <body>
 
-    <header tabindex="0" class="bg-white flex justify-between items-center" aria-label="Cabeçalho da página">
+    <header tabindex="0" class="bg-white flex justify-between items-center px-6 py-2 border-b border-slate-100"
+        aria-label="Cabeçalho da página">
         <a href="#" class="flex flex-row items-center" aria-label="Página inicial do Maceió Experience">
             <img class="h-12 p-1" src="img/logo.png" alt="Maceió Experience Logo">
             <span class="text-xl font-bold flex p-3 text-left whitespace-nowrap">Maceió Experience</span>
         </a>
 
-        <nav aria-label="Menu de navegação principal">
-            <ul class="flex flex-row items-center">
+        <!-- Botão Hambúrguer (visível apenas em telas menores) -->
+        <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+            class="md:hidden p-2 text-slate-700 hover:text-amber-600 focus:outline-none cursor-pointer"
+            aria-label="Abrir menu de navegação">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+
+        <!-- Menu Desktop (visível apenas em telas médias/grandes) -->
+        <nav class="hidden md:flex" aria-label="Menu de navegação principal">
+            <ul class="flex flex-row items-center gap-4">
                 <li class="p-1 font-bold"><a href="#" aria-label="Página inicial">Início</a></li>
                 <li class="p-1 font-bold"><a href="#passeios" aria-label="Seção de passeios">Passeios</a></li>
                 <li class="p-1 font-bold"><a href="#" aria-label="Seção de praias">Praias</a></li>
                 <li class="p-1 font-bold"><a href="#" aria-label="Informações de contato">Contato</a></li>
                 <li class="p-1 font-bold"><a href="#" aria-label="Sobre a empresa">Sobre</a></li>
                 <li class="p-1">
-                    <a class="bg-amber-300 text-amber-900 font-semibold py-2 px-4 rounded-xl btn-reservar inline-block" href="#" aria-label="Reservar sua experiência agora">Reservar</a>
+                    <a class="bg-amber-300 text-amber-900 font-semibold py-2 px-4 rounded-xl btn-reservar inline-block"
+                        href="#" aria-label="Reservar sua experiência agora">Reservar</a>
                 </li>
             </ul>
         </nav>
     </header>
 
+    <!-- Menu Mobile Dropdown (oculto por padrão, aparece ao clicar no hambúrguer) -->
+    <nav id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100"
+        aria-label="Menu de navegação mobile">
+        <ul class="flex flex-col gap-2 p-4 font-semibold text-center">
+            <li><a href="#" class="block py-2 text-slate-700 hover:bg-cyan-50 rounded-lg"
+                    aria-label="Página inicial">Início</a></li>
+            <li><a href="#passeios" class="block py-2 text-slate-700 hover:bg-cyan-50 rounded-lg"
+                    aria-label="Seção de passeios">Passeios</a></li>
+            <li><a href="#" class="block py-2 text-slate-700 hover:bg-cyan-50 rounded-lg"
+                    aria-label="Seção de praias">Praias</a></li>
+            <li><a href="#" class="block py-2 text-slate-700 hover:bg-cyan-50 rounded-lg"
+                    aria-label="Informações de contato">Contato</a></li>
+            <li><a href="#" class="block py-2 text-slate-700 hover:bg-cyan-50 rounded-lg"
+                    aria-label="Sobre a empresa">Sobre</a></li>
+            <li><a href="#" class="block py-2 bg-amber-300 text-amber-900 rounded-xl hover:bg-amber-400 transition"
+                    aria-label="Reservar sua experiência agora">Reservar</a></li>
+        </ul>
+    </nav>
+
     <main tabindex="0" class="conteudo" aria-label="Conteúdo principal">
         <section aria-label="Destaque da página">
             <div class="bg-[url('img/maceio.jpg')] bg-cover bg-center flex flex-col items-center justify-center py-24">
                 <div class="p-4 rounded-xl  mb-4">
-                    <h1 class="text-4xl font-bold text-white mb-4 text-shadow-lg/100">Descubra o Paraíso das Águas de Maceió</h1>
-                    <p class="text-lg text-white mb-3 font-semibold text-shadow-lg/100">Passeios, praias e experiências inesquecíveis no litoral alagoano.</p>
+                    <h1 class="text-4xl font-bold text-white mb-4 text-shadow-lg/100">Descubra o Paraíso das Águas de
+                        Maceió</h1>
+                    <p class="text-lg text-white mb-3 font-semibold text-shadow-lg/100">Passeios, praias e experiências
+                        inesquecíveis no litoral alagoano.</p>
                 </div>
-                <a class="bg-amber-300 text-amber-900 font-semibold py-2 px-4 rounded-xl btn-cta inline-block" href="#passeios" aria-label="Navegar até a seção de reservas de passeios">Reservar Agora</a>
+                <a class="bg-amber-300 text-amber-900 font-semibold py-2 px-4 rounded-xl btn-cta inline-block"
+                    href="#passeios" aria-label="Navegar até a seção de reservas de passeios">Reservar Agora</a>
             </div>
         </section>
 
         <section id="passeios" aria-label="Seção de passeios turísticos">
             <div class="p-8">
                 <h2 class="flex justify-center items-center font-bold text-3xl">Nossos Passeios</h2>
-                <p class="flex justify-center items-center text-slate-600 mt-2">Confira nossos passeios e reserve já a sua próxima aventura!</p>
+                <p class="flex justify-center items-center text-slate-600 mt-2">Confira nossos passeios e reserve já a
+                    sua próxima aventura!</p>
             </div>
 
             <div class="p-10">
                 <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-                    
-                    <article tabindex="0" class="flex h-full flex-col border-gray-300 bg-cyan-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow" aria-label="Passeio de Jangada em Maragogi">
-                        <img class="w-full h-64 object-cover rounded-t-xl" src="./img/jangada.jpg" alt="Jangada navegando em águas cristalinas nas piscinas naturais de Maragogi">
+
+                    <article tabindex="0"
+                        class="flex h-full flex-col border-gray-300 bg-cyan-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow"
+                        aria-label="Passeio de Jangada em Maragogi">
+                        <img class="w-full h-64 object-cover rounded-t-xl" src="./img/jangada.jpg"
+                            alt="Jangada navegando em águas cristalinas nas piscinas naturais de Maragogi">
                         <div class="artigo-conteudo flex-grow flex flex-col p-6">
-                            <span class="flex items-center justify-center pb-2 font-semibold text-sky-700 uppercase tracking-wider text-sm">Maragogi</span>
-                            <h3 class="flex items-center justify-center font-bold text-xl mb-3 italic">Passeio de Jangada</h3>
+                            <span
+                                class="flex items-center justify-center pb-2 font-semibold text-sky-700 uppercase tracking-wider text-sm">Maragogi</span>
+                            <h3 class="flex items-center justify-center font-bold text-xl mb-3 italic">Passeio de
+                                Jangada</h3>
                             <div class="p-2 flex-grow">
-                                <p class="artigo-texto text-slate-700">Passeio de jangada pelas piscinas naturais de Maragogi com águas mornas e cristalinas.</p>
+                                <p class="artigo-texto text-slate-700">Passeio de jangada pelas piscinas naturais de
+                                    Maragogi com águas mornas e cristalinas.</p>
                             </div>
                             <div class="artigo-compra mt-6 pt-4 border-t border-cyan-200">
                                 <div class="artigo-preco-box mb-4">
-                                    <span class="font-semibold flex items-center justify-center text-slate-500 text-sm">Por apenas</span>
-                                    <span class="font-bold flex items-center justify-center text-2xl text-cyan-800">R$ 79</span>
+                                    <span
+                                        class="font-semibold flex items-center justify-center text-slate-500 text-sm">Por
+                                        apenas</span>
+                                    <span class="font-bold flex items-center justify-center text-2xl text-cyan-800">R$
+                                        79</span>
                                 </div>
                                 <div class="flex items-center justify-center">
-                                    <a href="#" class="bg-amber-300 text-amber-900 font-semibold py-2.5 px-6 rounded-xl hover:bg-amber-400 transition" aria-label="Comprar passeio de jangada em Maragogi por 79 reais">Comprar</a>
+                                    <a href="#"
+                                        class="bg-amber-300 text-amber-900 font-semibold py-2.5 px-6 rounded-xl hover:bg-amber-400 transition"
+                                        aria-label="Comprar passeio de jangada em Maragogi por 79 reais">Comprar</a>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article tabindex="0" class="flex h-full flex-col border-gray-300 bg-cyan-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow" aria-label="Praia do Francês em Marechal Deodoro">
-                        <img src="./img/frances.jpg" alt="A bela orla da Praia do Francês cercada por arrecifes naturais de corais" class="w-full h-64 object-cover rounded-t-xl">
+                    <article tabindex="0"
+                        class="flex h-full flex-col border-gray-300 bg-cyan-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow"
+                        aria-label="Praia do Francês em Marechal Deodoro">
+                        <img src="./img/frances.jpg"
+                            alt="A bela orla da Praia do Francês cercada por arrecifes naturais de corais"
+                            class="w-full h-64 object-cover rounded-t-xl">
                         <div class="artigo-conteudo flex-grow flex flex-col p-6">
-                            <span class="flex items-center justify-center pb-2 font-semibold text-sky-700 uppercase tracking-wider text-sm">Marechal Deodoro</span>
-                            <h3 class="flex items-center justify-center font-bold text-xl mb-3 italic">Praia do Francês</h3>
+                            <span
+                                class="flex items-center justify-center pb-2 font-semibold text-sky-700 uppercase tracking-wider text-sm">Marechal
+                                Deodoro</span>
+                            <h3 class="flex items-center justify-center font-bold text-xl mb-3 italic">Praia do Francês
+                            </h3>
                             <div class="p-2 flex-grow">
-                                <p class="artigo-texto text-slate-700">Praia do Francês, uma das praias mais famosas e requisitadas de Maceió, cercada por arrecifes.</p>
+                                <p class="artigo-texto text-slate-700">Praia do Francês, uma das praias mais famosas e
+                                    requisitadas de Maceió, cercada por arrecifes.</p>
                             </div>
                             <div class="artigo-compra mt-6 pt-4 border-t border-cyan-200">
                                 <div class="artigo-preco-box mb-4">
-                                    <span class="font-semibold flex items-center justify-center text-slate-500 text-sm">Por apenas</span>
-                                    <span class="font-bold flex items-center justify-center text-2xl text-cyan-800">R$ 120</span>
+                                    <span
+                                        class="font-semibold flex items-center justify-center text-slate-500 text-sm">Por
+                                        apenas</span>
+                                    <span class="font-bold flex items-center justify-center text-2xl text-cyan-800">R$
+                                        120</span>
                                 </div>
                                 <div class="flex items-center justify-center">
-                                    <a href="#" class="bg-amber-300 text-amber-900 font-semibold py-2.5 px-6 rounded-xl hover:bg-amber-400 transition" aria-label="Comprar passeio para a Praia do Francês por 120 reais">Comprar</a>
+                                    <a href="#"
+                                        class="bg-amber-300 text-amber-900 font-semibold py-2.5 px-6 rounded-xl hover:bg-amber-400 transition"
+                                        aria-label="Comprar passeio para a Praia do Francês por 120 reais">Comprar</a>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article tabindex="0" class="flex h-full flex-col border-gray-300 bg-cyan-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow" aria-label="Maragogi Tour no Litoral Norte">
-                        <img src="./img/maragogi.jpg" alt="Vista aérea das águas azul turquesa de Maragogi" class="w-full h-64 object-cover rounded-t-xl">
+                    <article tabindex="0"
+                        class="flex h-full flex-col border-gray-300 bg-cyan-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow"
+                        aria-label="Maragogi Tour no Litoral Norte">
+                        <img src="./img/maragogi.jpg" alt="Vista aérea das águas azul turquesa de Maragogi"
+                            class="w-full h-64 object-cover rounded-t-xl">
                         <div class="artigo-conteudo flex-grow flex flex-col p-6">
-                            <span class="flex items-center justify-center pb-2 font-semibold text-sky-700 uppercase tracking-wider text-sm">Litoral Norte</span>
-                            <h3 class="flex items-center justify-center font-bold text-xl mb-3 italic">Maragogi Tour</h3>
+                            <span
+                                class="flex items-center justify-center pb-2 font-semibold text-sky-700 uppercase tracking-wider text-sm">Litoral
+                                Norte</span>
+                            <h3 class="flex items-center justify-center font-bold text-xl mb-3 italic">Maragogi Tour
+                            </h3>
                             <div class="p-2 flex-grow">
-                                <p class="artigo-texto text-slate-700">Maragogi Tour, um passeio completo e imperdível para conhecer os maiores bancos de corais da região.</p>
+                                <p class="artigo-texto text-slate-700">Maragogi Tour, um passeio completo e imperdível
+                                    para conhecer os maiores bancos de corais da região.</p>
                             </div>
                             <div class="artigo-compra mt-6 pt-4 border-t border-cyan-200">
                                 <div class="artigo-preco-box mb-4">
-                                    <span class="font-semibold flex items-center justify-center text-slate-500 text-sm">Por apenas</span>
-                                    <span class="font-bold flex items-center justify-center text-2xl text-cyan-800">R$ 199</span>
+                                    <span
+                                        class="font-semibold flex items-center justify-center text-slate-500 text-sm">Por
+                                        apenas</span>
+                                    <span class="font-bold flex items-center justify-center text-2xl text-cyan-800">R$
+                                        199</span>
                                 </div>
                                 <div class="flex items-center justify-center">
-                                    <a href="#" class="bg-amber-300 text-amber-900 font-semibold py-2.5 px-6 rounded-xl hover:bg-amber-400 transition" aria-label="Comprar passeio Maragogi Tour por 199 reais">Comprar</a>
+                                    <a href="#"
+                                        class="bg-amber-300 text-amber-900 font-semibold py-2.5 px-6 rounded-xl hover:bg-amber-400 transition"
+                                        aria-label="Comprar passeio Maragogi Tour por 199 reais">Comprar</a>
                                 </div>
                             </div>
                         </div>
