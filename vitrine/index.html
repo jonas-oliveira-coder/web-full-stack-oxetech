@@ -195,6 +195,31 @@
                 </div>
             </div>
         </section>
+
+        <section class="max-w-3xl mx-auto my-12 p-6 bg-white rounded-xl shadow-lg border border-gray-100">
+            <h2 class="text-3xl font-bold text-center text-cyan-800 mb-6">Entre em Contato</h2>
+            <form id="formContato" class="space-y-4">
+                <div>
+                    <label for="nome-contato" class="block font-medium text-gray-700 mb-1">Nome:</label>
+                    <input type="text" id="nome-contato" placeholder="Seu nome"
+                        class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                </div>
+                <div>
+                    <label for="email-contato" class="block font-medium text-gray-700 mb-1">E-mail:</label>
+                    <input type="email" id="email-contato" placeholder="Seu e-mail"
+                        class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                </div>
+                <div>
+                    <label for="mensagem-contato" class="block font-medium text-gray-700 mb-1">Mensagem:</label>
+                    <textarea id="mensagem-contato" placeholder="Sua mensagem" rows="4"
+                        class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-cyan-600 text-white font-bold py-2 px-4 rounded hover:bg-cyan-700 transition">
+                    Enviar Mensagem
+                </button>
+            </form>
+        </section>
     </main>
 
     <footer tabindex="0" class="bg-gray-400 flex justify-center items-center p-6" aria-label="Rodapé da página">
@@ -203,6 +228,24 @@
         </div>
     </footer>
 
+    <script>
+        const formContato = document.getElementById('formContato');
+
+        formContato.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome-contato').value;
+            const email = document.getElementById('email-contato').value;
+
+            if (nome === "" || email === "") {
+                alert("Erro: O nome e o e-mail são obrigatórios!");
+                return;
+            }
+
+            alert("Obrigado pelo contato, " + nome + "!");
+            formContato.reset();
+        });
+    </script>
 </body>
 
 </html>
