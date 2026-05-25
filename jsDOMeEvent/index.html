@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom e Eventos</title>
+</head>
+
+<body>
+    <header>
+        <h1>Dom e Eventos</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Home</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
+        </section>
+        <!-- botao para mudar de cor ao clicar -->
+        <button id="btn-color">Mudar cor</button>
+    </main>
+    <footer>
+        <p>Rodapé</p>
+    </footer>
+
+    <script>
+        const h2 = document.querySelector('h2')
+        const main = document.querySelector('main')
+        const header = document.querySelector('header')
+        const footer = document.querySelector('footer')
+        const nav = document.querySelector('nav')
+        const ul = document.querySelector('ul')
+        const li = document.querySelector('li')
+        const a = document.querySelector('a')
+        const p = document.querySelector('p')
+        const body = document.querySelector('body')
+        h2.innerText = 'e Hoje!!'
+        h2.style.color = 'red'
+        main.addEventListener('mouseenter', function () {
+
+        })
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'A' || event.key === 'a') {
+                alert('caixa clicada')
+                h2.style.fontWeight = 'bold'
+                main.style.backgroundColor = 'blue'
+                main.style.color = 'white'
+            }
+
+        })
+        const btnColor = document.querySelector('#btn-color')
+        btnColor.addEventListener('click', function () {
+            alert('clicado')
+            if (body.style.backgroundColor === 'red') {
+                body.style.backgroundColor = 'blue'
+            } else {
+                body.style.backgroundColor = 'red'
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
