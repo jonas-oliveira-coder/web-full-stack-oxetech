@@ -27,6 +27,9 @@
             <hr class="my-6 border-gray-200">
 
             <h1 class="text-xl font-bold text-blue-600 mb-3">Atividade 2: Renderizando a lista</h1>
+            <button id="btn-limpar"
+                class="bg-red-500 text-white px-3 py-1 rounded mb-3 hover:bg-red-600 transition text-sm">Limpar
+                Lista</button>
             <ul id="lista-convidados" class="list-disc pl-5 space-y-1 text-gray-700"></ul>
 
         </div>
@@ -84,6 +87,12 @@
                 li.innerHTML = convidados[i];
                 listaConvidados.appendChild(li);
             }
+        });
+
+        const btnLimpar = document.getElementById('btn-limpar');
+        btnLimpar.addEventListener('click', function () {
+            convidados.length = 0;
+            document.getElementById('lista-convidados').innerHTML = '';
         });
 
         // Atividade 3
