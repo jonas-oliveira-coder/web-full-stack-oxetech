@@ -1,13 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CryptoPulse - Monitoramento de Criptoativos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#09090b',
+                        darkCard: '#18181b',
+                        darkBorder: '#27272a',
+                        grayLight: '#BDBDBD',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Script principal deferido -->
+    <script src="index.js" defer></script>
 </head>
 
-<body>
+<body class="bg-black text-gray-100 min-h-screen font-sans antialiased selection:bg-zinc-800 selection:text-white">
+
+    <!-- Container Geral -->
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+
+        <!-- Cabeçalho Principal -->
+        <header class="flex items-center justify-between border-b border-zinc-800 pb-6 mb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                    Crypto<span class="text-zinc-400">Pulse</span>
+                </h1>
+                <p class="text-sm text-zinc-400 mt-1">
+                    Painel dinâmico em tons de cinza com monitoramento de criptoativos em tempo real
+                </p>
+            </div>
+        </header>
+
+
+        <!-- Mensagem de Erro de Conexão -->
+        <div id="error-state"
+            class="hidden text-center py-12 bg-zinc-950/80 border border-red-950/50 rounded-2xl mb-8 max-w-xl mx-auto focus:outline-none focus:ring-2 focus:ring-red-900"
+            tabindex="0" aria-label="Aviso: Erro ao puxar dados da API">
+            <svg class="h-12 w-12 text-rose-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <h3 class="text-lg font-bold text-white">Erro ao carregar dados</h3>
+            <p class="text-zinc-500 text-sm mt-1">Não foi possível obter as informações da API. Por favor, verifique sua
+                conexão ou tente novamente mais tarde.</p>
+        </div>
+
+        <!-- Grid de Cards de Cripto (Renderizado Dinamicamente) -->
+        <main id="crypto-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+            <!-- Os cards serão criados programaticamente pelo index.js -->
+        </main>
+
+        <!-- Rodapé do Dashboard -->
+        <footer
+            class="border-t border-zinc-900 pt-8 pb-12 flex flex-col md:flex-row items-center justify-between text-xs text-zinc-500 gap-4">
+            <div>
+                <p>&copy; 2026 CryptoPulse. Desenvolvido para fins educacionais - Oxetech.</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <span>API: CoinGecko (v3)</span>
+                <span>Desenvolvedor: Jonas Oliveira</span>
+            </div>
+        </footer>
+
+    </div>
 
 </body>
 
