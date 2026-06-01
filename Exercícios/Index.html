@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Exercícios</title>
+
+    <!-- Nível Intermediário: Lógica (Arrays e Loops)
+
+
+
+    Nível Difícil: Integração (Fetch API e Assincronicidade)
+
+    8. O Primeiro Contato (ViaCEP) Crie um botão "Buscar Endereço Fixo". No
+    JavaScript, faça uma função assíncrona (async/await) que dispare um fetch para
+    https://viacep.com.br/ws/57020000/json/. Pegue o resultado e exiba apenas o
+    nome da rua (logradouro) no console.log.
+
+
+    9. Rastreador de Entregas Evolua o exercício anterior: Crie um campo de input
+    onde o usuário possa digitar qualquer CEP. Ao clicar no botão, o JavaScript deve
+    pegar o valor desse input, fazer o fetch na API do ViaCEP dinamicamente, e
+    renderizar na tela um "Card de Entrega" mostrando a Rua, o Bairro e a Cidade,
+    estilizado dentro da paleta de cinzas.
+
+
+    10. O Painel de Equipe Use a API do Random User Generator
+    (https://randomuser.me/api/?results=4). Faça um fetch para buscar 4 perfis de
+    usuários. Crie um loop para extrair a foto, o nome e o país de cada um da resposta
+    JSON, e monte um Grid visual de contatos na tela, aplicando as classes de design
+    neutro que usamos no projeto. -->
+    <style>
+        body {
+            margin: 40px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .exercicio {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        /* Quadrado escuro para o Exercício 3 */
+        .quadrado-escuro {
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="exercicio">
+        <h2>1. O Interruptor</h2>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded" id="btn-interruptor">Alternar Fundo</button>
+    </div>
+
+    <div class="exercicio">
+        <h2>2. Ecoador de Textos</h2>
+        <input type="text" class="bg-gray-500 text-white px-4 py-2 rounded" id="input-eco"
+            placeholder="Digite algo aqui...">
+        <p id="paragrafo-eco"></p>
+    </div>
+
+    <div class="exercicio">
+        <h2>3. Ocultar e Revelar</h2>
+        <button id="btn-magica">Mágica</button>
+        <div id="quadrado" class="quadrado-escuro"></div>
+    </div>
+
+    <div class="exercicio">
+        <h2>4. Lista Automática</h2>
+        <ul id="listaAuto">
+        </ul>
+    </div>
+
+    <div class="exercicio">
+        <h2>5. Carrinho de Compras</h2>
+        <ul id="listaCarrinho">
+        </ul>
+    </div>
+
+    <div class="exercicio">
+        <h2>6. Filtro Anti-Bug</h2>
+        <input type="text" class="bg-gray-500 text-white px-4 py-2 rounded" id="input-bug"
+            placeholder="Digite algo aqui...">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded" id="btn-bug">Adicionar</button>
+        <ul id="listaBug">
+        </ul>
+    </div>
+
+    <div class="exercicio">
+        <h2>7. Gerador de Cards Monocromáticos</h2>
+        <div id="cards"></div>
+    </div>
+
+    <div class="exercicio">
+        <h2>8. O Primeiro Contato (ViaCEP)</h2>
+        <button id="btn-cep">Buscar Endereço Fixo (57020-000) e mostrar no console.log o logradouro</button>
+    </div>
+
+    <div class="exercicio">
+        <h2>9. Rastreador de Entregas</h2>
+        <input type="text" class="bg-gray-500 text-white px-4 py-2 rounded" id="input-cep"
+            placeholder="Digite um CEP" maxlength="8">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded" id="btn-rastrear">Rastrear</button>
+        <div id="card-entrega"></div>
+    </div>
+
+    <div class="exercicio">
+        <h2>10. O Painel de Equipe</h2>
+        <div id="cards-equipe" class="grid grid-cols-4 gap-4"></div>
+    </div>
+
+    <script>
+        // 1 - O Interruptor
+        let fundoEscuro = false;
+        const btnInterruptor = document.getElementById('btn-interruptor');
+
+        btnInterruptor.addEventListener('click', () => {
+            if (fundoEscuro) {
+                document.body.style.backgroundColor = '#BDBDBD'; 
+                fundoEscuro = false;
+            } else {
+                document.body.style.backgroundColor = '#1a1a1a'; 
+                fundoEscuro = true;
+            }
+        });
+
+        // 2 - Ecoador de Textos
+        const inputEco = document.getElementById('input-eco');
+        const paragrafoEco = document.getElementById('paragrafo-eco');
+
+        inputEco.addEventListener('input', () => {
+            paragrafoEco.textContent = inputEco.value;
+        });
+
+        // 3 - Ocultar e Revelar
+        const btnMagica = document.getElementById('btn-magica');
+        const quadrado = document.getElementById('quadrado');
+
+        btnMagica.addEventListener('click', () => {
+            if (quadrado.style.display === 'none') {
+                quadrado.style.display = 'block';
+            } else {
+                quadrado.style.display = 'none';
+            }
+        });
+
+        // 4 - Lista Automática
+        const linguagens = ['Rust', 'C++', 'GO++', 'Python', 'Java'];
+        const listaAuto = document.getElementById('listaAuto');
+
+        linguagens.forEach(linguagem => {
+            const item = document.createElement('li');
+            item.textContent = linguagem;
+            listaAuto.appendChild(item);
+        });
+
+        // 5 - Carrinho de Compras
+        const carrinho = [
+            { nome: 'Batata', preco: 2.00 },
+            { nome: 'Cenoura', preco: 3.50 },
+            { nome: 'Alface', preco: 1.75 },
+        ];
+        const listaCarrinho = document.getElementById('listaCarrinho');
+        let total = 0;
+
+        carrinho.forEach(produto => {
+            const item = document.createElement('li');
+            item.textContent = `${produto.nome} - R$ ${produto.preco}`;
+            listaCarrinho.appendChild(item);
+            total += produto.preco;
+        });
+
+        const totalCarrinho = document.createElement('li');
+        totalCarrinho.textContent = `O total da sua compra é : R$ ${total}`;
+        listaCarrinho.appendChild(totalCarrinho);
+
+        // 6 - Filtro Anti-Bug
+        const inputBug = document.getElementById('input-bug');
+        const btnBug = document.getElementById('btn-bug');
+        const listaBug = document.getElementById('listaBug');
+        const palavrasProibidas = ['bug', 'erro'];
+        const palavras = [];
+
+        btnBug.addEventListener('click', () => {
+            const palavra = inputBug.value;
+            if (palavrasProibidas.includes(palavra.toLowerCase())) {
+                alert('Palavra proibida!');
+            } else {
+                palavras.push(palavra);
+                const item = document.createElement('li');
+                item.textContent = palavra;
+                listaBug.appendChild(item);
+            }
+        });
+
+        // 7 - Gerador de Cards Monocromáticos
+
+        const projetos = [
+            { titulo: 'Projeto 1', status: 'ativo' },
+            { titulo: 'Projeto 2', status: 'inativo' },
+            { titulo: 'Projeto 3', status: 'em andamento' },
+        ];
+        const cards = document.getElementById('cards');
+
+        projetos.forEach(projeto => {
+            const card = document.createElement('div');
+            card.className = 'bg-black border border-gray-700 p-4';
+            card.innerHTML = `
+            <h3 class="text-white">${projeto.titulo}</h3>
+            <p class="text-gray-400">${projeto.status}</p>
+        `;
+            cards.appendChild(card);
+        });
+
+        // 8 - O Primeiro Contato (ViaCEP)
+        const btnCep = document.getElementById('btn-cep');
+
+        btnCep.addEventListener('click', async () => {
+            const response = await fetch('https://viacep.com.br/ws/57020000/json/');
+            const data = await response.json();
+            console.log(data.logradouro);
+        });
+
+        // 9 - Rastreador de Entregas
+        const inputCep = document.getElementById('input-cep');
+        const btnRastrear = document.getElementById('btn-rastrear');
+        const cardEntrega = document.getElementById('card-entrega');
+
+        // Garante que o input aceite APENAS números
+        inputCep.addEventListener('input', () => {
+            inputCep.value = inputCep.value.replace(/\D/g, ''); // Remove tudo que não for número
+        });
+
+        btnRastrear.addEventListener('click', async () => {
+            const cep = inputCep.value.trim();
+            
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                const data = await response.json();
+
+                // Se o ViaCEP retornar erro: true, significa que o CEP não existe
+                if (data.erro) {
+                    cardEntrega.innerHTML = `
+                        <div class="bg-red-950 border border-red-800 p-4 text-red-200 rounded mt-4">
+                            CEP incorreto
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Renderiza as informações de entrega
+                cardEntrega.innerHTML = `
+                    <div class="bg-black border border-gray-700 p-4 mt-4 rounded">
+                        <h3 class="text-white font-bold mb-2">Resultado da Entrega:</h3>
+                        <p class="text-gray-400"><strong>Rua:</strong> ${data.logradouro || 'N/A'}</p>
+                        <p class="text-gray-400"><strong>Bairro:</strong> ${data.bairro || 'N/A'}</p>
+                        <p class="text-gray-400"><strong>Cidade:</strong> ${data.localidade || 'N/A'} - ${data.uf || ''}</p>
+                    </div>
+                `;
+            } catch (error) {
+                // Trata falhas de conexão ou erros na API
+                cardEntrega.innerHTML = `
+                    <div class="bg-red-950 border border-red-800 p-4 text-red-200 rounded mt-4">
+                        CEP incorreto
+                    </div>
+                `;
+            }
+        });
+
+        // 10 - O Painel de Equipe
+        const cardsEquipe = document.getElementById('cards-equipe');
+
+        fetch('https://randomuser.me/api/?results=4')
+            .then(response => response.json())
+            .then(data => {
+                data.results.forEach(usuario => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-black border border-gray-700 p-4';
+                    card.innerHTML = `
+                    <img src="${usuario.picture.thumbnail}" class="rounded-full">
+                    <h3 class="text-white">${usuario.name.first} ${usuario.name.last}</h3>
+                    <p class="text-gray-400">${usuario.location.country}</p>
+                `;
+                    cardsEquipe.appendChild(card);
+                });
+            });
+
+
+    </script>
+</body>
+
+</html>
