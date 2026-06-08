@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Insights Dinâmico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#000000] text-[#BDBDBD] min-h-screen flex items-center justify-center font-sans p-4">
+
+    <main
+        class="bg-[#1a1a1a] border border-[#333333] rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center flex flex-col items-center gap-8"
+        aria-label="Gerador de insights" tabindex="0">
+
+        <h1 class="text-xl font-bold uppercase tracking-widest border-b border-[#333333] pb-2 w-full text-[#A0A0A0]"
+            tabindex="0" aria-label="Título: Sabedoria">
+            Sabedoria
+        </h1>
+
+        <div class="min-h-[6rem] flex items-center justify-center">
+            <p id="advice-text" class="text-lg italic text-[#BDBDBD] transition-opacity duration-300" aria-live="polite"
+                tabindex="0" aria-label="Texto do insight">
+                "Clique no botão para receber seu primeiro insight."
+            </p>
+        </div>
+
+        <button id="generate-btn"
+            class="bg-[#333333] hover:bg-[#444444] text-[#BDBDBD] font-bold py-3 px-6 rounded-lg border border-[#555555] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#BDBDBD] active:scale-95"
+            aria-label="Buscar novo insight" tabindex="0">
+            Gerar Insight
+        </button>
+
+    </main>
+
+    <script>
+        const btn = document.getElementById('generate-btn');
+        const adviceText = document.getElementById('advice-text');
+
+        btn.addEventListener('click', async () => {
+            // 1. Estado de Carregamento
+            adviceText.textContent = "Buscando sabedoria...";
+            adviceText.classList.add('opacity-50');
+            btn.disabled = true;
+            btn.classList.add('cursor-not-allowed', 'opacity-50');
+
+            try {
+                // 2. Fetch na API Pública
+                // Cache-busting para garantir nova frase a cada clique
+                const response = await fetch(`https://api.adviceslip.com/advice?timestamp=${new Date().getTime()}`);
+
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar o insight.');
+                }
+
+                const data = await response.json();
+
+                // 3. Exibir a frase
+                adviceText.textContent = `"${data.slip.advice}"`;
+
+            } catch (error) {
+                // Tratamento de erro simples mantendo as regras
+                adviceText.textContent = "Não foi possível obter um insight agora. Tente novamente.";
+            } finally {
+                // Retornar ao estado normal
+                adviceText.classList.remove('opacity-50');
+                btn.disabled = false;
+                btn.classList.remove('cursor-not-allowed', 'opacity-50');
+            }
+        });
+    </script>
+</body>
+
+</html>
