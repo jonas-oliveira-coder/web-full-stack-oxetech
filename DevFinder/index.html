@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFinder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#555555] text-[#000000] min-h-screen flex flex-col items-center p-8 font-sans">
+
+    <div class="w-full max-w-lg bg-[#BDBDBD] rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.5)] p-6 mb-6">
+        <h1 class="text-3xl font-bold text-center mb-6 text-[#000000]">DevFinder</h1>
+
+        <form id="search-form" class="flex gap-2">
+            <input type="text" id="search-input" placeholder="Digite o usuário do GitHub..."
+                aria-label="Campo de busca de usuário do GitHub" tabindex="0"
+                class="flex-1 bg-[#888888] text-[#000000] placeholder-[#333333] px-4 py-2 rounded-lg border-2 border-[#000000] focus:outline-none focus:border-[#444444]">
+            <button type="submit" aria-label="Botão para buscar usuário" tabindex="0"
+                class="bg-[#000000] text-[#BDBDBD] px-6 py-2 rounded-lg font-bold hover:bg-[#222222] transition-colors">
+                Buscar
+            </button>
+        </form>
+        <p id="error-message"
+            class="text-[#000000] font-bold mt-4 hidden text-center bg-[#888888] p-2 rounded-lg border border-[#000000]">
+        </p>
+    </div>
+
+    <div id="profile-card"
+        class="w-full max-w-lg bg-[#BDBDBD] rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.5)] p-6 hidden"
+        aria-label="Cartão de perfil do usuário" tabindex="0">
+        <div class="flex flex-col sm:flex-row items-center gap-6 mb-6">
+            <img id="profile-avatar" src="" alt="Avatar do usuário" aria-label="Foto de perfil do usuário" tabindex="0"
+                class="w-24 h-24 rounded-full border-4 border-[#000000]">
+            <div class="text-center sm:text-left">
+                <h2 id="profile-name" class="text-2xl font-bold text-[#000000]"></h2>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-bold mb-4 border-b-2 border-[#000000] pb-2 text-[#000000]">Últimos Repositórios</h3>
+            <div id="repos-list" class="flex flex-wrap gap-2 justify-center sm:justify-start"
+                aria-label="Lista de últimos repositórios" tabindex="0">
+                <!-- Repos here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('search-form');
+        const input = document.getElementById('search-input');
+        const errorMessage = document.getElementById('error-message');
+        const profileCard = document.getElementById('profile-card');
+        const profileAvatar = document.getElementById('profile-avatar');
+        const profileName = document.getElementById('profile-name');
+        const reposList = document.getElementById('repos-list');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = input.value.trim();
+
+            if (!username) {
+                showError('O campo de busca não pode estar vazio!');
+                return;
+            }
+
+            hideError();
+            profileCard.classList.add('hidden');
+
+            try {
+                const userRes = await fetch(`https://api.github.com/users/${username}`);
+                if (!userRes.ok) {
+                    throw new Error('Perfil não encontrado. Tente outro usuário.');
+                }
+                const userData = await userRes.json();
+
+                const reposRes = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`);
+                const reposData = await reposRes.json();
+
+                profileAvatar.src = userData.avatar_url;
+                profileName.textContent = userData.name || userData.login;
+
+                reposList.innerHTML = '';
+                if (reposData.length === 0) {
+                    reposList.innerHTML = '<p class="text-[#222222] font-semibold">Nenhum repositório encontrado.</p>';
+                } else {
+                    reposData.forEach(repo => {
+                        const repoEl = document.createElement('span');
+                        repoEl.className = 'bg-[#000000] text-[#BDBDBD] px-3 py-1 rounded-md text-sm font-semibold border border-[#333333] shadow-sm';
+                        repoEl.setAttribute('aria-label', `Repositório ${repo.name}`);
+                        repoEl.setAttribute('tabindex', '0');
+                        repoEl.textContent = repo.name;
+                        reposList.appendChild(repoEl);
+                    });
+                }
+
+                profileCard.classList.remove('hidden');
+
+            } catch (err) {
+                showError(err.message);
+            }
+        });
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorMessage.classList.remove('hidden');
+        }
+
+        function hideError() {
+            errorMessage.classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>
